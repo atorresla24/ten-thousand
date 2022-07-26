@@ -26,6 +26,10 @@ class GameLogic:
         if len(tup) == 0:
             return score
 
+        # straight
+        if len(roll) == 6:
+            return 1500
+
         # 6 of a kind
         if roll[0][1] == 6:
             if roll[0][0] == 1:
@@ -72,7 +76,7 @@ class GameLogic:
                 return score
 
         # double 3 of a kind
-        elif len(roll) > 1:
+        elif len(roll) == 2:
             if roll[0][1] == 3 and roll[1][1] == 3:
                 if roll[0][0] == 1:
                     score += 1000
@@ -118,23 +122,19 @@ class GameLogic:
                 score += 1500
                 return score
 
-        # straight
-        elif len(roll) == 6:
-            return 1500
-
         # full house
-        elif len(roll) >= 2:
-            if roll[0][3] and roll[1][2]:
-                score += 1500
+        # elif len(roll) >= 2:
+          #  if roll[0][3] and roll[1][2]:
+           #     score += 1500
 
-            elif len(roll) == 3:
-                if roll[2][0] == 5:
-                    score += 50
+            # elif len(roll) == 3:
+              #  if roll[2][0] == 5:
+               #    score += 50
 
-                elif roll[2][0] == 1:
-                    score += 100
+                # elif roll[2][0] == 1:
+                  # score += 100
 
-            return score
+            # return score
 
         # pair 1's
         elif roll[0][1] == 2 and roll[0][0] == 1:
