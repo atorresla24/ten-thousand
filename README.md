@@ -1,4 +1,4 @@
-LAB - Class 06
+LAB - Class 07
 Project: Ten_Thousand
 Author: Alec Torres, Ryan McMillan, Matthew Larkin
 Links and Resources
@@ -12,4 +12,4 @@ How to initialize/run your application
 
 How to use your library 
 Tests
-pytest 
+pytest
