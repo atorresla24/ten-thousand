@@ -3,14 +3,18 @@ from collections import Counter
 
 
 class Banker:
+    score = 0
+
     def __init__(self):
-        self.score = 0
+        pass
 
-    def add_score(self, points):
-        self.score += points
+    @staticmethod
+    def add_score(points):
+        Banker.score += points
 
-    def get_score(self):
-        return self.score
+    @staticmethod
+    def get_score():
+        return Banker.score
 
 
 class GameLogic:
@@ -18,24 +22,10 @@ class GameLogic:
         pass
 
     @staticmethod
-    def play_game(roller):
-        print("Welcome to Ten Thousand")
-        print("(y)es to play or (n)o to decline")
-        start = input("> ")
-        if start == "y":
-            print("Starting Round 1")
-            print("Rolling 6 dice...")
-            roll = roller(6)
-            print(f"*** {roll} ***")
-            print("Enter dice to keep or (q)uit")
-            cont = input("> ")
-            round_score = GameLogic.calculate_score()
-            if cont == "q":
-                print(f"Thanks for playing. You earned {Banker.get_score}")
-            else:
-                print(f"You have {round_score} unbanked points and 5 dice remaining")
-        elif start == "n":
-            print("OK. Maybe another time")
+    def dice_shelf(num=""):
+        dice = list(num)
+        rem = 6 - len(dice)
+        return tuple(dice), rem
 
     @staticmethod
     def roll_dice(num):
@@ -48,7 +38,6 @@ class GameLogic:
     @staticmethod
     def calculate_score(tup):
         score = 0
-        list(tup).sort()
         roll = Counter(tup).most_common()
 
         if tup is None:
@@ -189,9 +178,5 @@ class GameLogic:
 
         return score
 
-    @staticmethod
-    def test():
-        return (4, 2, 6, 4, 6, 5)
 
-    if __name__ == '__main__':
-        play_game()
+
