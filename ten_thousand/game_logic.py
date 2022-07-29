@@ -38,6 +38,8 @@ class GameLogic:
     @staticmethod
     def calculate_score(tup):
         score = 0
+        str_list = list(tup)
+        num = [int(num) for num in str_list]
         roll = Counter(tup).most_common()
 
         if tup is None:
@@ -142,41 +144,15 @@ class GameLogic:
                 score += 1500
                 return score
 
-        # full house
-        # elif len(roll) >= 2:
-          #  if roll[0][3] and roll[1][2]:
-           #     score += 1500
-
-            # elif len(roll) == 3:
-              #  if roll[2][0] == 5:
-               #    score += 50
-
-                # elif roll[2][0] == 1:
-                  # score += 100
-
-            # return score
-
-        # pair 1's
-        elif roll[0][1] == 2 and roll[0][0] == 1:
-            score += 200
-
-        # pair 5's
-        elif roll[0][1] == 2 and roll[0][0] == 5:
-            score += 100
-
-        elif len(roll) > 1:
-            if roll[1][1] == 2 and roll[1][0] == 5:
-                score += 100
-
-        # single 1's
-        elif roll[0][0] == 1:
-            score += 100
-
-        # single 5's
-        elif roll[0][0] == 5:
-            score += 50
+                # handle single 1's and 5's
+            one_counter = 0
+            five_counter = 0
+            for nums in num:
+                if nums == 1:
+                    one_counter += 1
+                if nums == 5:
+                    five_counter += 1
+            score += one_counter * 100
+            score += five_counter * 50
 
         return score
-
-
-
